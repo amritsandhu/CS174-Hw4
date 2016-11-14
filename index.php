@@ -11,6 +11,8 @@
 	<p> Share your Data in charts </p>
 
 	<script>
+
+	//Helper method to check the length of each line and total number of lines 
     function checkStr()
     {
     	var str = document.getElementById("comments").value;
@@ -47,8 +49,8 @@
     		alert("Empty text area! Please enter the data");
     	}
 		
-	}
-
+		}
+		//Function to verify data format after length and number of lines are verified 
 		function verifyFormat(str)
 		{
 			var lines = str.split("\n");
@@ -64,9 +66,9 @@
 						
 						if(parseFloat(num) || num == "")
 						{
-							alert(num);
 							continue;
 						}
+						
 						else
 						{
 
