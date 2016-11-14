@@ -11,7 +11,7 @@
 	<p> Share your Data in charts </p>
 
 	<script>
-    function val()
+    function checkStr()
     {
     	var str = document.getElementById("comments").value;
     	var valid = 0;
@@ -19,10 +19,11 @@
     	{
 
     		var lines = str.split('\n');
+    		if(lines.length <= 50){
 			for(var i = 0;i < lines.length;i++){
-				if(lines[i].length <= 10)
+				if(lines[i].length <= 80)
 				{
-
+					continue;
 				}
 				else
 				{
@@ -32,12 +33,55 @@
 				
 			}
 			valid = 1;
+			verifyFormat(str);
 
-			alert(Boolean(valid));
-
+			}
+			else
+			{
+			alert("Invalid Text! Max number (50) of lines surpassed");
+			}
+			
+    	}
+    	else
+    	{
+    		alert("Empty text area! Please enter the data");
     	}
 		
+	}
 
+		function verifyFormat(str)
+		{
+			var lines = str.split("\n");
+			for(var i = 0; i < lines.length; i++)
+			{
+				var line = lines[i].split(",");
+				if(/^[ a-z]+$/i.test(line[0].trim()) && line[0] != null)
+				{
+				
+					for(var j = 1; j < line.length; j++)
+					{	
+						var num = line[j].trim();
+						
+						if(parseFloat(num) || num == "")
+						{
+							alert(num);
+							continue;
+						}
+						else
+						{
+
+							alert("Invalid data format! Check line:" + (i+1));
+							return;
+							
+						}
+					}
+				}
+				else
+				{
+					alert("Invalid Line-" + (i+1) + "! Should start with text Label")
+				}
+			}
+		}
 
 
 
@@ -73,7 +117,7 @@
   			*/
 
 
-} 
+ 
 
 
  </script>
@@ -101,7 +145,7 @@
             class = "valid"></textarea>
     </label>
 </p>
-	<input type = "submit" onclick="val()";  style="margin: 5px;" action="index.html" name = "Share">
+	<input type = "submit" onclick="checkStr()";  style="margin: 5px;" action="index.html" name = "Share">
 	</form>
 
 	
