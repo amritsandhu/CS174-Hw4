@@ -12,30 +12,39 @@
 
 	<script>
     function val()
-
     {
     	var str = document.getElementById("comments").value;
+    	var valid = 0;
     	if(str)
-		var res = str.split(",");
+    	{
 
+    		var lines = str.split('\n');
+			for(var i = 0;i < lines.length;i++){
+				if(lines[i].length <= 10)
+				{
 
+				}
+				else
+				{
+					alert("Invalid Text! Line-" + (i+1) + " surpasses max character limit");
+					return;
+				}
+				
+			}
+			valid = 1;
 
-		var length = res.length;
-		var stringLength = str.length
+			alert(Boolean(valid));
 
-
-		var firstLetter = res[0];
-    	 
-      	if(str==null || str=="")
-		alert("blank text area")
+    	}
 		
-		else
-
-		
-			
 
 
-			if(/^[ a-z]+$/i.test(firstLetter))
+
+
+
+
+
+			/**if(/^[ a-z]+$/i.test(firstLetter))
 			{
   				alert("Good");
 
@@ -61,6 +70,7 @@
   			{
   				alert("Error");
   			}
+  			*/
 
 
 } 
@@ -86,7 +96,7 @@
 
 	<form action = "index.php" method =  "post" name = "myForm">
 	 <p><label>Chart Title:<br>
-       <textarea id = "comments" rows = "15" cols = "50" name = "area" 
+       <textarea id = "comments" rows = "15" cols = "80" name = "area" 
             placeholder = "text,value,value,value,value, value"
             class = "valid"></textarea>
     </label>
