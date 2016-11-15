@@ -74,49 +74,25 @@
 
 							alert("Invalid data format! Check line:" + (i+1));
 							return;
-							
 						}
+
 					}
 				}
 				else
 				{
 					alert("Invalid Line-" + (i+1) + "! Should start with text Label")
 				}
-			}
+
+				}
+
+				sendDataToServer(str);
 		}
 
+		function sendDataToServer(str)
+		{
+			alert("sending data to server");
+		}
 
-
-
-
-
-			/**if(/^[ a-z]+$/i.test(firstLetter))
-			{
-  				alert("Good");
-
-  				for(var i = 1; i<length; i++) 
-				{
-
-			
-
-					if (/^[ a-z]+$/i.test(res[i]))
-  					{
-  						alert("invalid");
-  					}
-  					else
-  					{
-  						alert("great Job");
-  						makeHash(res);
-
-					}
-				}
-  			}
-
-  			else
-  			{
-  				alert("Error");
-  			}
-  			*/
 
 
  
