@@ -3,18 +3,7 @@
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
-</head>
-<header>
-<tile> Paste Chart </tile>
-</header>
-<body>
-
-	<h1> Paste Chart </h1>
-
-	<p> Share your Data in charts </p>
-
 	<script>
-
 	//Helper method to check the length of each line and total number of lines 
     function checkStr()
     {
@@ -91,52 +80,36 @@
 				sendDataToServer(str);
 		}
 
+
+		//This metohd only gets invoked if data is valid on client  side 
 		function sendDataToServer(str)
 		{
-			alert("in here");
+			//Sending off data to server.php
+			alert("balling lol");
 
-			/*$.ajax({
-				type: 'POST',
-				url: 'server.php',
-				dataType: 'html',
-				data: 
-				{
-					'string' : str,
-				}
-				success: function(msg)
-				{
-					alert(msg);
-				}
-			});*/
-			//window.location.href = "http://localhost/phpWork/Homework4/server.php?data=" +str;
 		}
+	</script>
+</head>
+<header>
+<tile> Paste Chart </tile>
+</header>
+<body>
 
+	<h1> Paste Chart </h1>
 
-
+	<p> Share your Data in charts </p>
  
 
-
- </script>
-
-
-
+	
 	<form action = "index.php" method =  "post" name = "myForm">
 	 <p><label>Chart Title:<br>
        <textarea id = "comments" rows = "15" cols = "80" name = "area" 
             placeholder = "text,value,value,value,value, value"
             class = "valid"></textarea>
     </label>
-</p>
+	</p>
 	<input type = "submit" onclick="checkStr()";  style="margin: 5px;" action="index.html" name = "Share">
 	</form>
-
-	
-	
-		
-		
-
-	
-
 
 
 </body>

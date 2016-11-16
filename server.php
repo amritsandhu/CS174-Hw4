@@ -1,16 +1,19 @@
 <script type="text/javascript" src="index.php"></script>
 <?php
 
-//include ("index.php");
 
-//$varData = $_GET['area'];
-$varData = $_POST['string'];
-if(isset($varData))
+if(isset($_POST['comments']))
 {
-//checkStr($varData);
-	echo "printing stuff";
-	echo print_r($varData);
+
+	echo $_POST['comments'];
+	
 }
+else
+{
+	header('HTTP/1.1 500 Internal Server Error');
+}
+
+echo"hey im here";
 
 function checkStr($varData)
 {
