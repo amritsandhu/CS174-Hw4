@@ -85,16 +85,18 @@
 		function sendDataToServer(str)
 		{
 			//Sending off data to server.php
-			
+			var title = document.getElementById("title").value;
+
+		
 		$.ajax({
     	type: "POST",
     		url: "server.php",
-   			 data: {'str':str} ,
+   			 data: {'str':str, 'title': title} ,
     	success: function(data){
         if(data)
         {
            // console.log(data);
-           alert("Data sent: " + data)
+           alert(data)
              $('#comments').val('');
         }
 		},
@@ -117,11 +119,12 @@
  
 
 	
-	 <p><label>Chart Title:<br></p>
+	 <p><label>Chart Title: </label></p>
+	 <input type="text" name="Title" id="title" placeholder="Title..." style="margin-bottom: 5px; margin-top: 0px;"> <br>
        <textarea id = "comments" rows = "15" cols = "80" name = "area" 
             placeholder = "text,value,value,value,value, value"
             class = "valid"></textarea>
-    </label>
+  
 	<br>
 	<input type = "submit" onclick="checkStr()";  style="margin: 5px;" action="index.html" name = "Share">
 	

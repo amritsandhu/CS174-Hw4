@@ -1,19 +1,48 @@
-<script type="text/javascript" src="index.php"></script>
 <?php
-
-
+$con;
+$title = $_POST['title'];
 if(isset($_POST['str']))
 {
-
-	echo $_POST['str'];
+	
+	checkStr($_POST['str']);
+	//	connect_database();
 	
 }
-else
-{
-	header('HTTP/1.1 500 Internal Server Error');
-}
 
-echo"hey im here";
+
+function connect_database()
+                {
+                    $servername = "127.0.0.1";
+                    $username = "root";
+                    $password = "";
+
+                    // Create connection
+                    $GLOBALS['con'] = new mysqli($servername, $username, $password);
+
+                    // Check connection
+                    if ($GLOBALS['con']->connect_error) 
+                        {
+                            die("Connection failed: " . $GLOBALS['con']->connect_error);
+                        } 
+                   echo "Connected successfully ";
+            
+                }
+
+
+             function add_Entry($varHash, $varTitle, $varData)
+                {
+   				
+                 
+                      
+                   
+                     $sql = "INSERT INTO mydatabase.info (hash, title, data)  VALUES ('$varHash', '$varTitle', '$varData')";
+                     $result = $GLOBALS['con']->query($sql);
+
+                    
+                    return $result;     
+                   
+                }
+
 
 function checkStr($varData)
 {
@@ -77,7 +106,7 @@ function verifyFormat($varData)
 						
 						if(is_float($num) || $num == "" || is_numeric($num))
 						{
-							echo $num;
+							
 							continue;
 						}
 						
@@ -90,8 +119,6 @@ function verifyFormat($varData)
 						}
 					}
 					
-					
-
 				}
 				else
 				{
@@ -100,8 +127,25 @@ function verifyFormat($varData)
 
 				}
 			}
+
+			createHashCode($varData);
+			
 		}
 
+		function createHashCode($data)
+		{
+			connect_database();
+			$lines = explode("\n", trim($data));
+			
+			for ($i=0; $i < sizeof($lines); $i++) 
+			{ 
+				//$hashValue = hash(md5($myTitle, $lines[$i]));
+				$hashValue = md5($lines[$i]);
+				echo gettype($hashValue);
+				echo $hashValue;
+				add_Entry($hashValue, $GLOBALS['title'], $data);
+			}
+		}
 
 
 
