@@ -85,7 +85,23 @@
 		function sendDataToServer(str)
 		{
 			//Sending off data to server.php
-			alert("balling lol");
+			
+		$.ajax({
+    	type: "POST",
+    		url: "server.php",
+   			 data: {'str':str} ,
+    	success: function(data){
+        if(data)
+        {
+           // console.log(data);
+           alert("Data sent: " + data)
+             $('#comments').val('');
+        }
+		},
+		error: function(xhr, textStatus, errorThrown){
+        alert('failed');
+
+    	}});
 
 		}
 	</script>
@@ -101,15 +117,14 @@
  
 
 	
-	<form action = "index.php" method =  "post" name = "myForm">
-	 <p><label>Chart Title:<br>
+	 <p><label>Chart Title:<br></p>
        <textarea id = "comments" rows = "15" cols = "80" name = "area" 
             placeholder = "text,value,value,value,value, value"
             class = "valid"></textarea>
     </label>
-	</p>
+	<br>
 	<input type = "submit" onclick="checkStr()";  style="margin: 5px;" action="index.html" name = "Share">
-	</form>
+	
 
 
 </body>

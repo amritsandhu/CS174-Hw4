@@ -2,10 +2,10 @@
 <?php
 
 
-if(isset($_POST['comments']))
+if(isset($_POST['str']))
 {
 
-	echo $_POST['comments'];
+	echo $_POST['str'];
 	
 }
 else
