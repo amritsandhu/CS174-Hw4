@@ -17,17 +17,17 @@ function initializeDB()
     $stmt = mysqli_prepare($con,'DROP TABLE IF EXISTS info;');
     mysqli_stmt_execute($stmt);
 
-    $stmt = mysqli_prepare($con, 'CREATE TABLE info
-        (ID INT AUTO_INCREMENT,
-        HASH VARCHAR(100) ,
-        TITLE VARCHAR(50),
-        DATA  VARCHAR(500),
-        PRIMARY KEY (ID));');
+    $stmt = mysqli_prepare($con, 'CREATE TABLE `info` (
+        
+        `HASH` VARCHAR(100) NOT NULL,
+        `TITLE` VARCHAR(50) DEFAULT NULL,
+        `DATA` VARCHAR(500) DEFAULT NULL
+        )ENGINE=InnoDB DEFAULT CHARSET=latin1;');
     
-     mysqli_stmt_execute($stmt)
+    
+     mysqli_stmt_execute($stmt);
 
     $stmt->close();
-    
     $con->close();
 
     echo ("Database Successfully Initialized");

@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
@@ -21,7 +20,8 @@
 				}
 				else
 				{
-					alert("Invalid Text! Line-" + (i+1) + " surpasses max character limit");
+					//alert("Invalid Text! Line-" + (i+1) + " surpasses max character limit");
+					console.log("Invalid Text! Line-" + (i+1) + " surpasses max character limit");
 					return;
 				}
 				
@@ -32,13 +32,15 @@
 			}
 			else
 			{
-			alert("Invalid Text! Max number (50) of lines surpassed");
+			//alert("Invalid Text! Max number (50) of lines surpassed");
+			console.log("Invalid Text! Max number (50) of lines surpassed");
 			}
 			
     	}
     	else
     	{
-    		alert("Empty text area! Please enter the data");
+    		//alert("Empty text area! Please enter the data");
+    		console.log("Empty text area! Please enter the data");
     	}
 		
 		}
@@ -64,7 +66,8 @@
 						else
 						{
 
-							alert("Invalid data format! Check line:" + (i+1));
+							//alert("Invalid data format! Check line:" + (i+1));
+							console.log("Invalid data format! Check line: "+ (i+1));
 							return;
 						}
 
@@ -72,12 +75,14 @@
 				}
 				else
 				{
-					alert("Invalid Line-" + (i+1) + "! Should start with text Label")
+					//alert("Invalid Line-" + (i+1) + "! Should start with text Label")
+					console.log("Invalid Line-" + (i+1) + "! Should start with text Label");
 				}
 
 				}
-
+				//echo $str;
 				sendDataToServer(str);
+
 		}
 
 
@@ -90,13 +95,17 @@
 		
 		$.ajax({
     	type: "POST",
-    		url: "server.php",
-   			 data: {'str':str, 'title': title} ,
+    		url: "/hw4trial/server.php",
+   			 data: {'str':str,'title': title} ,
     	success: function(data){
         if(data)
         {
            // console.log(data);
-           alert(data)
+           //alert(data)
+		   console.log(data);
+		   window.location.href = "/hw4trial/server.php?title="+title;
+		   window.location.href="/hw4trial/drawChart.php?c=chart&a=show&arg1=LineGraph&arg2="+data;
+		  
              $('#comments').val('');
         }
 		},
@@ -107,6 +116,48 @@
 
 		}
 	</script>
+
+	<?php
+#thisoneworks
+			$con = NULL;
+			
+			
+					
+			//function to create connnection instance with DB
+			function connect_mysql()
+			{
+			$servername = "127.0.0.1";
+			$username = "root";
+			$password = "";
+
+			// Create connection
+			$GLOBALS['con'] = mysqli_connect($servername, $username, $password, "myDatabase");
+
+			// Check connection
+			if ($GLOBALS['con']->connect_error) 
+			{
+			die("Connection failed: " . $GLOBALS['con']->connect_error);
+			} 
+			//echo "Connected successfully ";
+			return $GLOBALS['con'];
+			}
+			
+			function disconnect()
+			{
+				
+			$GLOBALS['con']->close();
+
+			}
+		
+		connect_mysql();
+
+		$sql = "SELECT HASH FROM info";
+		$result = $GLOBALS['con']->query($sql);
+		$row = $result->fetch_assoc();
+		
+
+	
+	?>
 </head>
 <header>
 <tile> Paste Chart </tile>
@@ -126,9 +177,19 @@
             class = "valid"></textarea>
   
 	<br>
-	<input type = "submit" onclick="checkStr()";  style="margin: 5px;" action="index.html" name = "Share">
-	
 
+<?php
+//$link_address = '?c=chart&a=show&arg1=LineGraph&arg2=';
+//echo "<a href='".$link_address.$row['HASH']."'>";
+
+  //header("Location: drawChart.php?c=chart&a=show&arg1=LineGraph");
+?>
+	<input type = "submit"  onclick="checkStr()" style="margin: 5px;" action="/index.php">
+
+
+<?php
+"</a>"
+?>
 
 </body>
 </html>

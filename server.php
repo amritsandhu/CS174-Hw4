@@ -1,9 +1,8 @@
 <?php
 $con;
-$title = $_POST['title'];
+$title = $_REQUEST['title'];
 if(isset($_POST['str']))
 {
-	
 	checkStr($_POST['str']);
 	//	connect_database();
 	
@@ -24,7 +23,8 @@ function connect_database()
                         {
                             die("Connection failed: " . $GLOBALS['con']->connect_error);
                         } 
-                   echo "Connected successfully ";
+                   
+                   return $GLOBALS['con'];
             
                 }
 
@@ -130,21 +130,24 @@ function verifyFormat($varData)
 
 			createHashCode($varData);
 			
+			
 		}
 
 		function createHashCode($data)
 		{
 			connect_database();
-			$lines = explode("\n", trim($data));
+			//$lines = explode("\n", trim($data));
 			
-			for ($i=0; $i < sizeof($lines); $i++) 
+			for ($i=0; $i < sizeof($data); $i++) 
 			{ 
 				//$hashValue = hash(md5($myTitle, $lines[$i]));
-				$hashValue = md5($lines[$i]);
-				echo gettype($hashValue);
+				$hashValue = md5($data[$i]);
+				//echo gettype($hashValue);
 				echo $hashValue;
 				add_Entry($hashValue, $GLOBALS['title'], $data);
 			}
+
+			
 		}
 
 

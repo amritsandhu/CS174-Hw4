@@ -1,0 +1,10 @@
+<?xml version = "1.0" encoding ="utf-8" ?>
+<!-- chart.dtd-->
+<!ELEMENT pastechart (title, source, info)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT source (#PCDATA)>
+<!ELEMENT info (#PCDATA)>
+
+
+
+
